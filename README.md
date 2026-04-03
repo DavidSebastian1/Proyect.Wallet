@@ -1,15 +1,16 @@
 # Proyect.Wallet
-‎🇪🇸Hola! Bienvenid@ a mi mayor proyecto personal hasta ahora creado 100% desde 0, el cual simula un Wallet online donde se puede agregar y/o retirar la cantidad de USD que desee, además puede acceder al USD total en el Wallet y comparar su valor con cualquier moneda del mundo en tiempo real mediante una API (Por ejemplo VES, COP, CNY, etc). 
+
+#‎🇪🇸Hola! Bienvenid@ a mi mayor proyecto personal hasta ahora creado 100% desde 0, el cual simula un Wallet online donde se puede agregar y/o retirar la cantidad de USD que desee, además puede acceder al USD total en el Wallet y comparar su valor con cualquier moneda del mundo en tiempo real mediante una API (Por ejemplo VES, COP, CNY, etc). 
 ‎
-‎Fundamentos de Python aplicados:
+##‎Fundamentos de Python aplicados:
 ‎
-‎-API privada (exchangerate-api): Incluida en el programa con las librerías config(para acceder al archivo config.py con la API_KEY), y request(para soilicitar el diccionario de Divisas en la URL de la API).
+‎* **API privada (exchangerate-api): Incluida en el programa con las librerías config(para acceder al archivo config.py con la API_KEY), y request(para soilicitar el diccionario de Divisas en la URL de la API).
 ‎
-‎-OOP: class Coin para crear las funciones de forma mas simplificada, accediendo a las 3 variables de la clase mediante un constructor(__init__(self, ...))
+‎* **OOP: class Coin para crear las funciones de forma mas simplificada, accediendo a las 3 variables de la clase mediante un constructor(__init__(self, ...))
 ‎
-‎-Bucles y control de flujo: Permite al usuario usar las opciones del programa de forma indefinida y actualizar el Wallet en tiempo real, hasta que decida salir del programa (4. Salir) y asi terminar el bucle.
+‎* **Bucles y control de flujo: Permite al usuario usar las opciones del programa de forma indefinida y actualizar el Wallet en tiempo real, hasta que decida salir del programa (4. Salir) y asi terminar el bucle.
 ‎
-‎¿Como usar el programa?:
+‎##¿Como usar el programa?:
 ‎
 ‎1. Accede a   https://v6.exchangerate-api.com/ para obtener tu API_KEY
 ‎
