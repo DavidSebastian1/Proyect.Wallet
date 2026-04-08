@@ -1,3 +1,27 @@
+# 🇬🇧 Hello! Welcome to my biggest personal project to date, created entirely from scratch
+
+  Simulates an online wallet where you can add and/or withdraw any amount of USD you want. You can also access the total USD in the wallet and compare its value with any currency in the world in real time using an API (for example, VES, COP, CNY, etc.).
+
+## Python Fundamentals Applied:
+
+- **Private API (exchangerate-api):** Included in the program with the config library (to access the config.py file with the API_KEY) and the request library (to request the currency dictionary at the API URL).
+
+- **OOP:** The Coin class simplifies function creation by accessing the class's three variables through a constructor (`__init__(self, ...)`).
+
+- **Loops and flow control:** Allows the user to use program options indefinitely and update the wallet in real time until they exit the program (4. Exit), thus ending the loop.
+
+## How to use the program:
+
+1. Go to https://v6.exchangerate-api.com/ to get your API_KEY.
+
+2. Once you have copied your API_KEY, open the `config.py` file.
+
+3. Paste it into `API_KEY = 'YOUR_API_KEY_HERE'`.
+
+4. Run the `project.py` file and test the program!
+
+---
+
 # 🇪🇸 Hola! Bienvenid@ a mi mayor proyecto personal hasta ahora creado 100% desde 0
 
 	Simula un Wallet online donde se puede agregar y/o retirar la cantidad de USD que desee, además puede acceder al USD total en el Wallet y comparar su valor con cualquier moneda del mundo en tiempo real mediante una API (Por ejemplo VES, COP, CNY, etc).
@@ -20,28 +44,5 @@
 
 4. Ejecuta el archivo `proyecto.py` y prueba el programa!
 
----
-
-# 🇬🇧 Hello! Welcome to my biggest personal project to date, created entirely from scratch
-
-  Simulates an online wallet where you can add and/or withdraw any amount of USD you want. You can also access the total USD in the wallet and compare its value with any currency in the world in real time using an API (for example, VES, COP, CNY, etc.).
-
-## Python Fundamentals Applied:
-
-- **Private API (exchangerate-api):** Included in the program with the config library (to access the config.py file with the API_KEY) and the request library (to request the currency dictionary at the API URL).
-
-- **OOP:** The Coin class simplifies function creation by accessing the class's three variables through a constructor (`__init__(self, ...)`).
-
-- **Loops and flow control:** Allows the user to use program options indefinitely and update the wallet in real time until they exit the program (4. Exit), thus ending the loop.
-
-## How to use the program:
-
-1. Go to https://v6.exchangerate-api.com/ to get your API_KEY.
-
-2. Once you have copied your API_KEY, open the `config.py` file.
-
-3. Paste it into `API_KEY = 'YOUR_API_KEY_HERE'`.
-
-4. Run the `project.py` file and test the program!
 
 
