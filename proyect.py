@@ -18,7 +18,7 @@ class Coin:
     input('\nPress enter to return to the menu')
 	 
   def user_wallet(self):
-    user_action  = int(input('Select your needed action(1. Add USD to the wallet, 2. Withdraw USD of the wallet): '))
+    user_action  = int(input('Select your needed action (1. Add USD to the wallet, 2. Withdraw USD of the wallet): '))
     if user_action == 1:
       self.user = float(input('How much USD you want to add?: '))
       self.wallet += self.user
@@ -44,7 +44,7 @@ class Coin:
 		
       if self.coin in coin1:
         final_coin = self.wallet * coin1[self.coin]
-        print(f'Your USD {self.wallet:.2f} is {final_coin:.3f}{self.coin} right now!')
+        print(f'Your USD {self.wallet:.2f} is {self.coin} {final_coin:.3f} right now!')
         input('\nPress enter to return to the menu') 
       
       else:
@@ -62,7 +62,7 @@ user_add = 0
 money = Coin(user_add, user_coin, user_money)
 
 while True:
-  print('Please input your needed action')
+  print('Please input your needed action (1, 2, 3, 4.)')
   print('1. See Wallet Balance')
   print('2. Add/Withdraw USD from the Wallet')
   print('3. See your Wallet USD as other coins')
