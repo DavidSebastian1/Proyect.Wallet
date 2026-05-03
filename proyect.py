@@ -8,7 +8,8 @@ try:
   api_currency = data['conversion_rates']
 except AttributeError:
   print("ERROR: The config.py file with the API key is not found!")
-
+except KeyError:
+  print('The API_KEY in the config.py file is invalid, please use a valid API key!')
 class Wallet:
   def __init__(self, user_money, currency, wallet=0):
     self.user_money = user_money
