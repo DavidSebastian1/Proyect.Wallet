@@ -1,4 +1,4 @@
-# 🇬🇧 Hello! Welcome to my biggest personal project to date, created entirely from scratch
+# 🇬🇧 Hello! Welcome to my first personal project to date, created entirely from scratch
 
   Simulates an online wallet where you can add and/or withdraw any amount of USD you want. You can also access the total USD in the wallet and compare its value with any currency in the world in real time using an API (for example, VES, COP, CNY, etc.).
 
@@ -9,6 +9,8 @@
 - **OOP:** The Coin class simplifies function creation by accessing the class's three variables through a constructor (`__init__(self, ...)`).
 
 - **Loops and flow control:** Allows the user to use program options indefinitely and update the wallet in real time until they exit the program (4. Exit), thus ending the loop.
+
+- **Error Handling:** try/except statements for efficient error handling, whether from user input and/or incorrect use of the API key.
 
 ## How to use the program:
 
@@ -22,7 +24,7 @@
 
 ---
 
-# 🇪🇸 Hola! Bienvenid@ a mi mayor proyecto personal hasta ahora creado 100% desde 0
+# 🇪🇸 Hola! Bienvenid@ a mi primer proyecto personal hasta ahora creado 100% desde 0
 
 	Simula un Wallet online donde se puede agregar y/o retirar la cantidad de USD que desee, además puede acceder al USD total en el Wallet y comparar su valor con cualquier moneda del mundo en tiempo real mediante una API (Por ejemplo VES, COP, CNY, etc).
 
@@ -33,6 +35,8 @@
 - **OOP:** class Coin para crear las funciones de forma mas simplificada, accediendo a las 3 variables de la clase mediante un constructor (`__init__(self, ...)`).
 
 - **Bucles y control de flujo:** Permite al usuario usar las opciones del programa de forma indefinida y actualizar el Wallet en tiempo real, hasta que decida salir del programa (4. Salir) y así terminar el bucle.
+
+- **Manejo de Errores:** Declaraciones try/except para el manejo eficiente de errores, ya sean entradas del usuario y/o por uso incorrecto de la API key.
 
 ## ¿Como usar el programa?:
 
