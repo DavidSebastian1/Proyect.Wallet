@@ -1,4 +1,4 @@
-# 🇬🇧 Hello! Welcome to my first personal project to date, created entirely from scratch
+# 🇬🇧 Hello! Welcome to my first personal project, created entirely from scratch
 
   Simulates an online wallet where you can add and/or withdraw any amount of USD you want. You can also access the total USD in the wallet and compare its value with any currency in the world in real time using an API (for example, VES, COP, CNY, etc.).
 
@@ -24,7 +24,7 @@
 
 ---
 
-# 🇪🇸 Hola! Bienvenid@ a mi primer proyecto personal hasta ahora creado 100% desde 0
+# 🇪🇸 Hola! Bienvenid@ a mi primer proyecto personal creado 100% desde 0
 
 	Simula un Wallet online donde se puede agregar y/o retirar la cantidad de USD que desee, además puede acceder al USD total en el Wallet y comparar su valor con cualquier moneda del mundo en tiempo real mediante una API (Por ejemplo VES, COP, CNY, etc).
 
