@@ -1,34 +1,37 @@
 from abc import ABC, abstractmethod
 import requests
 import config 
-import os
+import json
 
+#Abrir archivo json con todas las divisas disponibles
+with open('Badge.json', 'r', encoding='utf-8') as file:
+    badge = json.load(file)
 #*******Mensajes frecuentes*******
 menu_msg = '\nPress enter to return to the menu'	
+num_value = "You can only enter numeric values!"
 #**************************************
-
-try:
+try:#Acceso a la API pada obtener valores de divisas
   url = f"https://v6.exchangerate-api.com/v6/{config.API_KEY}/latest/USD"
   response = requests.get(url)
   data = response.json()
   api_currency = data['conversion_rates']
 #Manejo de errores en caso de uso  incorrecto de la API
-except AttributeError:
-  print("ERROR: The config.py file with the API key is not found!")
+except AttributeError as e:
+  print(f"ERROR: The config.py file with the API key is not found!\n({e})")
   
-except KeyError:
-  print('The API_KEY in the config.py file is invalid, please use a valid API key!')  		
+except KeyError as e:
+  print(f'The API_KEY in the config.py file is invalid, please use a valid API key!\n({e})')
   
 #Clase para mostrar y modificar el balance					
 class UserWallet(ABC):
   def __init__(self, wallet=0):
     self.wallet = wallet
   
-  def add_usd(self, new_balance: int) -> int:
+  def add_usd(self, new_balance: float) -> float:
     self.wallet += new_balance 
     return self.wallet
     
-  def withdraw_usd(self, withdraw: int) -> int:
+  def withdraw_usd(self, withdraw: float) -> float:
     self.wallet -= (withdraw + withdraw * 0.02) #Esto aplica una comision del 2% por retiro 
     return self.wallet
   
@@ -50,22 +53,22 @@ class UserAdd(UserWallet):
 
   def user_add(self):
     try:
-      user_input = int(input('Enter the amount you wish to add: '))
+      user_input = float(input('Enter the amount you wish to add: '))
       self.add_usd(user_input)
       print(f'\nSuccesffully added! Your balance: ${self.wallet:,.2f}')
     except ValueError as e:
-      print(f"\nYou can only enter numeric values! ({e})")#Manejo de errores en caso de entrada invalida
+      print(f"\n{num_value}\n({e})")#Manejo de errores en caso de entrada invalida
     
   def user_withdraw(self):
     try:
-      user_input = int(input('Enter the amount you wish to withdraw: '))
+      user_input = float(input('Enter the amount you wish to withdraw: '))
       if user_input < self.wallet:
         self.withdraw_usd(user_input)
         print(f"\nSuccesfully withdraw! Your balance: {self.wallet:,.2f}$\n\n**Note: A 2% fee is applied to each withdrawal.**")
       else:
         print("\nInsufficient funds to perform the operation")
     except ValueError as e:
-      print(f"\nYou can only enter numeric values! ({e})")#Manejo de errores en caso de entrada invalida
+      print(f"\n{num_value}\n({e})")#Manejo de errores en caso de entrada invalida
       
 #Clase para comparar el balance con divisas extranjeras     
 class Currency(UserAdd):
@@ -78,7 +81,7 @@ class Currency(UserAdd):
       new_currency = self.wallet * self.currency[user_input]
       return new_currency
     except KeyError as e:
-      print(f"The currency you indicated is incorrect or unavailable ({e})")
+      print(f"\nThe currency you indicated is incorrect or unavailable ({e})")
   
   @abstractmethod
   def input_currency(self):
@@ -94,9 +97,14 @@ class UserCurrency(Currency):
     try:
       self.user_input = input('Which currency you want to convert your USD? (Ex. VES, EUR, CNY, etc): ').upper()
       self.user_currency(self.user_input)
-      print(f'\nYour USD {self.wallet:,.2f} is {self.user_input} {self.user_currency(self.user_input):,.3f} right now!')
+      print(f'\nYour USD {self.wallet:,.2f} is {self.user_currency(self.user_input):,.3f} {badge[self.user_input]}.')
     except TypeError:
       pass
+#Metodo para crear archivo de texto con todas las divisas disponibles      
+  def currency_txt(self):
+    with open("currency.txt", "w", encoding="utf-8") as file:
+      for index, (key, value) in enumerate(badge.items(), start=1):
+        file.write(f"|{index}. {key}: {value}\n|\n")
     	  	  
 #Menu principal 
 print('---Welcome to your Online Wallet!---')
@@ -111,11 +119,12 @@ Please input your needed action (1, 2, 3, 4, 5):
 |2. Add USD to the Wallet
 |3. Withdraw USD from the Wallet
 |4. See your Wallet USD as other badges
-|5. Exit
+|5. View all available currencies
+|6. Exit
 ''')
   
-  user_option = input("Your option: ").strip()
-      
+  user_option = input("Your option: ").strip() 
+  
   if user_option == '1':
     print(user_currency)
     input(menu_msg)
@@ -133,6 +142,11 @@ Please input your needed action (1, 2, 3, 4, 5):
     input(menu_msg)
   
   elif user_option == '5':
+    user_currency.currency_txt()
+    print('\nA text file has been created with all available currencies! Check it out in this same directory (currency.txt).')
+    input(menu_msg)
+  
+  elif user_option == '6' or "":
     print('\nSession closed')
     break 
     
