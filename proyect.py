@@ -139,7 +139,7 @@ user_currency.wallet = saved_balance
 
 while True:
   print('''
-Please input your needed action (1, 2, 3, 4, 5):
+Please input your needed action (1, 2, 3, 4, 5, 6):
 
 |1. See Wallet Balance
 |2. Add USD to the Wallet
