@@ -2,10 +2,15 @@ from abc import ABC, abstractmethod
 import requests
 import config 
 import json
+import sys
 
 #Abrir archivo json con todas las divisas disponibles
-with open('Badge.json', 'r', encoding='utf-8') as file:
+try:
+  with open('badge.json', 'r', encoding='utf-8') as file:
     badge = json.load(file)
+except FileNotFoundError as e:
+  print(f'The JSON file with the necessary currencies could not be found! ({e})')
+  sys.exit(1)
 #*******Mensajes frecuentes*******
 menu_msg = '\nPress enter to return to the menu'	
 num_value = "You can only enter numeric values!"
@@ -18,10 +23,14 @@ try:#Acceso a la API pada obtener valores de divisas
 #Manejo de errores en caso de uso  incorrecto de la API
 except AttributeError as e:
   print(f"ERROR: The config.py file with the API key is not found!\n({e})")
-  
+  sys.exit(1)
 except KeyError as e:
   print(f'The API_KEY in the config.py file is invalid, please use a valid API key!\n({e})')
-  
+  sys.exit(1)
+#Manejo de errores en caso de no tener conexion a internet  
+except requests.exceptions.ConnectionError:
+  print('---ERROR--- Necesitas una conexion a internet para poder usar el programa!\n')
+  sys.exit(1)
 #Clase para mostrar y modificar el balance					
 class UserWallet(ABC):
   def __init__(self, wallet=0):
@@ -96,8 +105,9 @@ class UserCurrency(Currency):
   def input_currency(self):
     try:
       self.user_input = input('Which currency you want to convert your USD? (Ex. VES, EUR, CNY, etc): ').upper()
-      self.user_currency(self.user_input)
-      print(f'\nYour USD {self.wallet:,.2f} is {self.user_currency(self.user_input):,.3f} {badge[self.user_input]}.')
+      convertion = self.user_currency(self.user_input)
+      if convertion is not None:
+        print(f'\nYour USD {self.wallet:,.2f} is {convertion:,.3f} {badge[self.user_input]}.')
     except TypeError:
       pass
 #Metodo para crear archivo de texto con todas las divisas disponibles      
@@ -105,11 +115,27 @@ class UserCurrency(Currency):
     with open("currency.txt", "w", encoding="utf-8") as file:
       for index, (key, value) in enumerate(badge.items(), start=1):
         file.write(f"|{index}. {key}: {value}\n|\n")
-    	  	  
+#Metodo para guardar el balance en archivo json     	  	  
+def balance_json():
+  try:
+    with open("wallet.json", "r", encoding="utf-8") as file:
+      data2 = json.load(file)
+      return data2.get('Balance', 0.00)
+  except (FileNotFoundError, json.JSONDecodeError):
+    pass
+  return 0.0  
+#Metodo para guardar el balance indroducido por el usuario   
+def save_balance(value):
+  dict_json = {'Balance': value}
+  with open('wallet.json', 'w', encoding='utf-8') as file:
+    json.dump(dict_json, file, indent=4)
+
 #Menu principal 
 print('---Welcome to your Online Wallet!---')
 
+saved_balance = balance_json()
 user_currency = UserCurrency()
+user_currency.wallet = saved_balance
 
 while True:
   print('''
@@ -131,10 +157,12 @@ Please input your needed action (1, 2, 3, 4, 5):
   
   elif user_option == '2':
     user_currency.user_add()
+    save_balance(user_currency.wallet)
     input(menu_msg)
     
   elif user_option == '3':
     user_currency.user_withdraw()
+    save_balance(user_currency.wallet)
     input(menu_msg)
     
   elif user_option == '4':
@@ -147,6 +175,7 @@ Please input your needed action (1, 2, 3, 4, 5):
     input(menu_msg)
   
   elif user_option == '6' or "":
+    save_balance(user_currency.wallet)
     print('\nSession closed')
     break 
     
