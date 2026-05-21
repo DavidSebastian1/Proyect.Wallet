@@ -29,7 +29,7 @@ except KeyError as e:
   sys.exit(1)
 #Manejo de errores en caso de no tener conexion a internet  
 except requests.exceptions.ConnectionError:
-  print('---ERROR--- Necesitas una conexion a internet para poder usar el programa!\n')
+  print('---ERROR--- You need an internet connection to use the program!\n')
   sys.exit(1)
 #Clase para mostrar y modificar el balance					
 class UserWallet(ABC):
