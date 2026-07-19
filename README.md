@@ -8,7 +8,7 @@
 
 - **OOP:** The Coin class simplifies function creation by accessing the class's three variables through a constructor (`__init__(self, ...)`).
 
-- **Loops and flow control:** Allows the user to use program options indefinitely and update the wallet in real time until they exit the program (4. Exit), thus ending the loop.
+- **Loops and flow control:** Allows the user to use program options indefinitely and update the wallet in real time until they exit the program, thus ending the loop.
 
 - **Error Handling:** try/except statements for efficient error handling, whether from user input and/or incorrect use of the API key.
 
@@ -34,7 +34,7 @@
 
 - **OOP:** class Coin para crear las funciones de forma mas simplificada, accediendo a las 3 variables de la clase mediante un constructor (`__init__(self, ...)`).
 
-- **Bucles y control de flujo:** Permite al usuario usar las opciones del programa de forma indefinida y actualizar el Wallet en tiempo real, hasta que decida salir del programa (4. Salir) y así terminar el bucle.
+- **Bucles y control de flujo:** Permite al usuario usar las opciones del programa de forma indefinida y actualizar el Wallet en tiempo real, hasta que decida salir del programa y así terminar el bucle.
 
 - **Manejo de Errores:** Declaraciones try/except para el manejo eficiente de errores, ya sean entradas del usuario y/o por uso incorrecto de la API key.
 
